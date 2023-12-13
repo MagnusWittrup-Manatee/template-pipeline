@@ -1,0 +1,28 @@
+---
+import { Hero } from "../../components/friluft/hero";
+import { Header } from "../../components/friluft/header";
+
+export function getStaticPaths() {
+  return [
+    { params: { template: "hero" as const } },
+    { params: { template: "header" as const } },
+    { params: { template: "hero" as const } },
+  ];
+}
+
+const { template } = Astro.params;
+---
+
+<div>
+  {
+    template === "hero" ? (
+      <Hero />
+    ) : template === "header" ? (
+      <Header />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center">
+        <h1>404</h1>
+      </div>
+    )
+  }
+</div>
